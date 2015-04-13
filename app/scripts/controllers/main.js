@@ -1,17 +1,18 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name rfidFittingRoomClientApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the rfidFittingRoomClientApp
- */
+function mainCtrl($scope, Restangular) {
+
+    var api = Restangular.all('rfid');
+
+    $scope.products = [];
+
+    function setProducts(product) {
+        $scope.products = product.relatedProducts;
+    }
+
+    api.post({ id: 11111 })
+        .then(setProducts);
+}
+
 angular.module('rfidFittingRoomClientApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('MainCtrl', [ '$scope', 'Restangular', mainCtrl ]);
