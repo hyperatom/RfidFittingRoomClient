@@ -29,6 +29,7 @@ angular
                 redirectTo: '/'
             });
     })
-    .run(function(Restangular) {
-        Restangular.setBaseUrl('http://localhost:1337');
-    });
+    .run(function(Restangular, APIBASE) {
+        Restangular.setBaseUrl(APIBASE);
+    })
+    .value('APIBASE', 'http://rfid-fitting-room-server.herokuapp.com/');

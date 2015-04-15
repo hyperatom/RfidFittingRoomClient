@@ -1,6 +1,6 @@
 'use strict';
 
-function mainCtrl($scope, Restangular) {
+function mainCtrl($scope, Restangular, APIBASE) {
 
     var api = Restangular.all('rfid');
 
@@ -9,6 +9,12 @@ function mainCtrl($scope, Restangular) {
     function setProducts(product) {
         $scope.products = product.relatedProducts;
     }
+
+    /*io.sails.url = APIBASE;
+
+    io.socket.get('/rfid', function(body) {
+        console.log(body);
+    });*/
 
     api.post({ id: 11111 })
         .then(setProducts);
