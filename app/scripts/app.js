@@ -16,9 +16,12 @@ angular
         'ngRoute',
         'ngSanitize',
         'ngTouch',
-        'restangular'
+        'ngSails'
     ])
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $sailsProvider) {
+
+        $sailsProvider.url = 'http://rfid-fitting-room-server.herokuapp.com/';
+        //$sailsProvider.url = 'http://127.0.0.1:1337/';
 
         $routeProvider
             .when('/', {
@@ -28,8 +31,4 @@ angular
             .otherwise({
                 redirectTo: '/'
             });
-    })
-    .run(function(Restangular, APIBASE) {
-        Restangular.setBaseUrl(APIBASE);
-    })
-    .value('APIBASE', 'http://rfid-fitting-room-server.herokuapp.com/');
+    });

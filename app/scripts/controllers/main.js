@@ -1,24 +1,18 @@
 'use strict';
 
-function mainCtrl($scope, Restangular, APIBASE) {
+function mainCtrl($scope, $sails) {
 
-    var api = Restangular.all('rfid');
+    function setProducts(res) {
+        $scope.products = res.data.relatedProducts;
+    }
 
     $scope.products = [];
 
-    function setProducts(product) {
-        $scope.products = product.relatedProducts;
-    }
-
-    /*io.sails.url = APIBASE;
-
-    io.socket.get('/rfid', function(body) {
-        console.log(body);
-    });*/
-
-    api.post({ id: 11111 })
+    $sails.get('/rfid')
         .then(setProducts);
+
+    $sails.on('product', setProducts);
 }
 
 angular.module('rfidFittingRoomClientApp')
-    .controller('MainCtrl', [ '$scope', 'Restangular', mainCtrl ]);
+    .controller('MainCtrl', [ '$scope', '$sails', mainCtrl ]);
