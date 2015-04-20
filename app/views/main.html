@@ -1,16 +1,29 @@
 <div class="suggested-products">
+  <header>
+    We Recommend
+  </header>
 
   <div ng-repeat="product in products"
-       class="product-container col-sm-4">
+  	   ng-hide="!isCurrentIndex($index)"
+  	   ng-click="nextSlide();"
+       class="product-container">
 
     <div class="product">
-        <h3 ng-bind="product.name"></h3>
+    	<div class="product-column">
+        
+        	<img class="product__image" ng-src="{{product.image}}">
+    
+    	</div>
+    	<div class="product-column">
+    
+        	<h3 ng-bind="product.name"></h3>
 
-        <img class="product__image" ng-src="{{ product.image }}">
+			<strong ng-bind="product.price | currency: '£': 2"></strong>
 
-        <p ng-bind="product.description"></p>
+        	<p ng-bind="product.description"></p>
+        	
+        </div>
 
-        <strong ng-bind="product.price | currency: '£': 2"></strong>
     </div>
 
   </div>
