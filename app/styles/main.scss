@@ -60,31 +60,12 @@ header {
   display: block;
 }
 
-.ng-hide-add {
-  animation: 2s animateLeave ease;
+.product__show {
+  opacity: 1;
+  transition: 1.5s ease;
 }
 
-.ng-hide {
-  left: 100%;
-}
-
-.ng-hide-remove {
-  animation: 2s animateEnter ease;
-}
-
-@keyframes animateLeave {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: -100%;
-  }
-}
-@keyframes animateEnter {
-  0% {
-    left: 100%;
-  }
-  100% {
-    left: 0;
-  }
+.product__hide {
+  opacity: 0;
+  transition: 1.5s ease;
 }

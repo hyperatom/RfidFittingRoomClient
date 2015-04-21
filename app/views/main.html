@@ -1,8 +1,8 @@
 <section class="suggested-products">
     <header>We Recommend</header>
 
-    <div ng-repeat="product in products" ng-hide="!isCurrentIndex($index)"
-         ng-click="nextSlide();" class="product-container">
+    <div ng-repeat="product in products" ng-class="!isCurrentIndex($index) ? 'product__hide' : 'product__show'"
+         class="product-container">
 
         <div class="product">
             <div class="product-column">
@@ -20,7 +20,7 @@
                     Available In Store
                 </strong>
 
-                <article ng-show="!product.hasConsidered">
+                <article ng-hide="product.hasConsidered">
                     <h3>Would you consider buying this item?</h3>
 
                     <button ng-click="considerProduct(product, true)" class="btn btn-lg btn-success">
@@ -28,7 +28,7 @@
                         <span>Yes</span>
                     </button>
 
-                    <button ng-click="considerProduct(product, true)" class="btn btn-lg btn-danger">
+                    <button ng-click="considerProduct(product, false)" class="btn btn-lg btn-danger">
                         <span class="glyphicon glyphicon-remove"></span>
                         <span>No</span>
                     </button>

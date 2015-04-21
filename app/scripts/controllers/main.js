@@ -1,10 +1,18 @@
 'use strict';
 
-function mainCtrl($scope, $sails) {
+function mainCtrl($scope, $sails, $interval) {
 
     function setProducts(res) {
         $scope.products = res.data.relatedProducts;
     }
+
+    function showNextSlide() {
+        $scope.currentIndex = ($scope.currentIndex + 1) % $scope.products.length;
+    }
+
+    (function init() {
+        $interval(showNextSlide, 4000);
+    })();
 
     $scope.products = [];
     $scope.currentIndex = 0;
@@ -21,10 +29,6 @@ function mainCtrl($scope, $sails) {
     	return $scope.currentIndex === index;
     };
 
-    $scope.nextSlide = function() {
-    	$scope.currentIndex = ($scope.currentIndex < $scope.products.length - 1) ? ++$scope.currentIndex : 0;
-    };
-
     $sails.get('/rfid')
         .then(setProducts);
 
@@ -32,4 +36,4 @@ function mainCtrl($scope, $sails) {
 }
 
 angular.module('rfidFittingRoomClientApp')
-    .controller('MainCtrl', [ '$scope', '$sails', mainCtrl ]);
+    .controller('MainCtrl', [ '$scope', '$sails', '$interval', mainCtrl ]);
