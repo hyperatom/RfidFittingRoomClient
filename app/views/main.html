@@ -1,15 +1,15 @@
-<section class="suggested-products">
-    <header>We Recommend</header>
+<header class="brand-header">
+    <img class="brand-logo" src="assets/images/brand/logo.svg">
+</header>
 
-    <div ng-repeat="product in products" ng-class="!isCurrentIndex($index) ? 'product__hide' : 'product__show'"
-         class="product-container">
-
-        <div class="product">
-            <div class="product__column">
+<section>
+    <div ng-repeat="product in products">
+        <div class="product" ng-class="!isCurrentIndex($index) ? 'product__hide' : 'product__show'">
+            <div class="product__column product__column--image">
                 <img class="product__image" ng-src="{{ product.image }}">
             </div>
 
-            <div class="product__column">
+            <div class="product__column product__column--info">
                 <h2 class="product__name" ng-bind="product.name"></h2>
 
                 <strong class="product__price" ng-bind="product.price | currency: '£': 2"></strong>

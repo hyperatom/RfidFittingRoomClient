@@ -1,18 +1,8 @@
-.suggested-products {
-  height: 100%;
-}
-
-.product-container {
-  top: 75px;
-  bottom: 0;
+.product {
+  display: inline-block;
+  padding: 1em;
   position: absolute;
   width: 100%;
-}
-
-.product {
-  height: 100%;
-  padding: 1em;
-  font-size: 0;
 }
 
 .product__name {
@@ -25,11 +15,15 @@
 }
 
 .product__column {
-  height: 100%;
-  width: 50%;
-  display: inline-block;
-  font-size: 16px;
-  vertical-align: top;
+  float: left;
+}
+
+.product__column--image {
+  width: 40%;
+}
+
+.product__column--info {
+  width: 60%;
 }
 
 .product__image {
