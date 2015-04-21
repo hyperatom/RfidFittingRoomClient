@@ -1,31 +1,43 @@
-<div class="suggested-products">
-  <header>
-    We Recommend
-  </header>
+<section class="suggested-products">
+    <header>We Recommend</header>
 
-  <div ng-repeat="product in products"
-  	   ng-hide="!isCurrentIndex($index)"
-  	   ng-click="nextSlide();"
-       class="product-container">
+    <div ng-repeat="product in products" ng-hide="!isCurrentIndex($index)"
+         ng-click="nextSlide();" class="product-container">
 
-    <div class="product">
-    	<div class="product-column">
-        
-        	<img class="product__image" ng-src="{{product.image}}">
-    
-    	</div>
-    	<div class="product-column">
-    
-        	<h3 ng-bind="product.name"></h3>
+        <div class="product">
+            <div class="product-column">
+                <img class="product__image" ng-src="{{ product.image }}">
+            </div>
 
-			<strong ng-bind="product.price | currency: '£': 2"></strong>
+            <div class="product-column">
+                <h2 ng-bind="product.name"></h2>
 
-        	<p ng-bind="product.description"></p>
-        	
+                <strong ng-bind="product.price | currency: '£': 2"></strong>
+
+                <star-rating class="product__star-rating" rating="product.rating"></star-rating>
+
+                <strong ng-show="product.inStore" class="product__store-availability">
+                    Available In Store
+                </strong>
+
+                <article ng-show="!product.hasConsidered">
+                    <h3>Would you consider buying this item?</h3>
+
+                    <button ng-click="considerProduct(product, true)" class="btn btn-lg btn-success">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span>Yes</span>
+                    </button>
+
+                    <button ng-click="considerProduct(product, true)" class="btn btn-lg btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        <span>No</span>
+                    </button>
+                </article>
+
+                <article ng-show="product.hasConsidered">
+                    <h4>Thank you for your feedback!</h4>
+                </article>
+            </div>
         </div>
-
     </div>
-
-  </div>
-
-</div>
+</section>
