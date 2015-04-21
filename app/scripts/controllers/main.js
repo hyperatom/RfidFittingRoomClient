@@ -4,7 +4,17 @@ function mainCtrl($scope, $sails, $interval, $timeout) {
 
     var rotationTimer = {};
 
+    function isActiveProduct(product) {
+        return typeof product !== 'undefined';
+    }
+
     function setProducts(res) {
+
+        if (!isActiveProduct(res.data)) {
+            return $sails.get('/rfid')
+                .then(setProducts);
+        }
+
         $scope.products = res.data.relatedProducts;
     }
 
@@ -30,9 +40,12 @@ function mainCtrl($scope, $sails, $interval, $timeout) {
         }, 1000);
     }
 
-    (function init() {
-        initProductRotation();
-    })();
+    function getProducts() {
+        $sails.on('product', setProducts);
+
+        return $sails.get('/rfid')
+            .then(setProducts);
+    }
 
     $scope.products = [];
     $scope.currentIndex = 0;
@@ -50,10 +63,10 @@ function mainCtrl($scope, $sails, $interval, $timeout) {
     	return $scope.currentIndex === index;
     };
 
-    $sails.get('/rfid')
-        .then(setProducts);
-
-    $sails.on('product', setProducts);
+    (function init() {
+        getProducts();
+        initProductRotation();
+    })();
 }
 
 angular.module('rfidFittingRoomClientApp')
