@@ -1,6 +1,8 @@
 'use strict';
 
-function mainCtrl($scope, $sails, $interval) {
+function mainCtrl($scope, $sails, $interval, $timeout) {
+
+    var rotationTimer = {};
 
     function setProducts(res) {
         $scope.products = res.data.relatedProducts;
@@ -10,9 +12,26 @@ function mainCtrl($scope, $sails, $interval) {
         $scope.currentIndex = ($scope.currentIndex + 1) % $scope.products.length;
     }
 
+    function initProductRotation() {
+        var timeoutMs = 8000;
+        rotationTimer = $interval(showNextSlide, timeoutMs);
+    }
+
+    function cancelProductRotation() {
+        $interval.cancel(rotationTimer);
+    }
+
+    function restartProductRotation() {
+        cancelProductRotation();
+
+        $timeout(function() {
+            showNextSlide();
+            initProductRotation();
+        }, 1000);
+    }
+
     (function init() {
-        var timeoutMs = 10000;
-        $interval(showNextSlide, timeoutMs);
+        initProductRotation();
     })();
 
     $scope.products = [];
@@ -20,6 +39,7 @@ function mainCtrl($scope, $sails, $interval) {
 
     $scope.considerProduct = function(product) {
         product.hasConsidered = true;
+        restartProductRotation();
     };
 
     $scope.setCurrentIndex = function(index) {
@@ -37,4 +57,4 @@ function mainCtrl($scope, $sails, $interval) {
 }
 
 angular.module('rfidFittingRoomClientApp')
-    .controller('MainCtrl', [ '$scope', '$sails', '$interval', mainCtrl ]);
+    .controller('MainCtrl', [ '$scope', '$sails', '$interval', '$timeout', mainCtrl ]);

@@ -16,6 +16,7 @@
 
 .product__column {
   float: left;
+  height: 300px;
 }
 
 .product__column--image {
@@ -24,6 +25,7 @@
 
 .product__column--info {
   width: 60%;
+  padding-top: 20px;
 }
 
 .product__image {
@@ -47,7 +49,7 @@
 }
 
 .product-consideration__button-panel {
-  margin: 1em 0;
+  margin-top: 2em;
 }
 
 .product-consideration__button-panel .button {
