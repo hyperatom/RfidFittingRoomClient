@@ -1,47 +1,54 @@
-<header class="brand-header">
-    <img class="brand-logo" src="assets/images/brand/logo.svg">
-</header>
+<article class="splash-screen" ng-hide="products">
+    <img class="splash-screen__brand-logo" src="assets/images/brand/logo.svg">
+</article>
 
-<section>
-    <div ng-repeat="product in products">
-        <div class="product" ng-class="!isCurrentIndex($index) ? 'product__hide' : 'product__show'">
-            <div class="product__column product__column--image">
-                <img class="product__image" ng-src="{{ product.image }}">
-            </div>
 
-            <div class="product__column product__column--info">
-                <h2 class="product__name" ng-bind="product.name"></h2>
+<div ng-show="products">
+    <header class="brand-header">
+        <img class="brand-header__brand-logo" src="assets/images/brand/logo.svg">
+    </header>
 
-                <strong class="product__price" ng-bind="product.price | currency: '£': 2"></strong>
+    <section>
+        <div ng-repeat="product in products">
+            <div class="product" ng-class="!isCurrentIndex($index) ? 'product__hide' : 'product__show'">
+                <div class="product__column product__column--image">
+                    <img class="product__image" ng-src="{{ product.image }}">
+                </div>
 
-                <star-rating class="product__star-rating" rating="product.rating"></star-rating>
+                <div class="product__column product__column--info">
+                    <h2 class="product__name" ng-bind="product.name"></h2>
 
-                <strong ng-show="product.inStore" class="product__store-availability">
-                    Available In Store
-                </strong>
+                    <strong class="product__price" ng-bind="product.price | currency: '£': 2"></strong>
 
-                <article class="product-consideration">
-                    <article ng-show="product.hasConsidered">
-                        <h4 class="product-consideration__thanks">Thank you for your feedback!</h4>
+                    <star-rating class="product__star-rating" rating="product.rating"></star-rating>
+
+                    <strong ng-show="product.inStore" class="product__store-availability">
+                        Available In Store
+                    </strong>
+
+                    <article class="product-consideration">
+                        <article ng-show="product.hasConsidered">
+                            <h4 class="product-consideration__thanks">Thank you for your feedback!</h4>
+                        </article>
+
+                        <article ng-hide="product.hasConsidered">
+                            <h3 class="product-consideration__question">Would you consider buying this item?</h3>
+
+                            <div class="product-consideration__button-panel">
+                                <button ng-click="considerProduct(product, true)" class="button button--large button--green">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                    <span>Yes</span>
+                                </button>
+
+                                <button ng-click="considerProduct(product, false)" class="button button--large button--green">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                    <span>No</span>
+                                </button>
+                            </div>
+                        </article>
                     </article>
-
-                    <article ng-hide="product.hasConsidered">
-                        <h3 class="product-consideration__question">Would you consider buying this item?</h3>
-
-                        <div class="product-consideration__button-panel">
-                            <button ng-click="considerProduct(product, true)" class="button button--large button--green">
-                                <span class="glyphicon glyphicon-ok"></span>
-                                <span>Yes</span>
-                            </button>
-
-                            <button ng-click="considerProduct(product, false)" class="button button--large button--green">
-                                <span class="glyphicon glyphicon-remove"></span>
-                                <span>No</span>
-                            </button>
-                        </div>
-                    </article>
-                </article>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
