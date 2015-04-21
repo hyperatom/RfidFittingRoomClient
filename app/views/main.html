@@ -5,14 +5,14 @@
          class="product-container">
 
         <div class="product">
-            <div class="product-column">
+            <div class="product__column">
                 <img class="product__image" ng-src="{{ product.image }}">
             </div>
 
-            <div class="product-column">
-                <h2 ng-bind="product.name"></h2>
+            <div class="product__column">
+                <h2 class="product__name" ng-bind="product.name"></h2>
 
-                <strong ng-bind="product.price | currency: '£': 2"></strong>
+                <strong class="product__price" ng-bind="product.price | currency: '£': 2"></strong>
 
                 <star-rating class="product__star-rating" rating="product.rating"></star-rating>
 
@@ -20,22 +20,26 @@
                     Available In Store
                 </strong>
 
-                <article ng-hide="product.hasConsidered">
-                    <h3>Would you consider buying this item?</h3>
+                <article class="product-consideration">
+                    <article ng-show="product.hasConsidered">
+                        <h4 class="product-consideration__thanks">Thank you for your feedback!</h4>
+                    </article>
 
-                    <button ng-click="considerProduct(product, true)" class="btn btn-lg btn-success">
-                        <span class="glyphicon glyphicon-ok"></span>
-                        <span>Yes</span>
-                    </button>
+                    <article ng-hide="product.hasConsidered">
+                        <h3 class="product-consideration__question">Would you consider buying this item?</h3>
 
-                    <button ng-click="considerProduct(product, false)" class="btn btn-lg btn-danger">
-                        <span class="glyphicon glyphicon-remove"></span>
-                        <span>No</span>
-                    </button>
-                </article>
+                        <div class="product-consideration__button-panel">
+                            <button ng-click="considerProduct(product, true)" class="button button--large button--green">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                <span>Yes</span>
+                            </button>
 
-                <article ng-show="product.hasConsidered">
-                    <h4>Thank you for your feedback!</h4>
+                            <button ng-click="considerProduct(product, false)" class="button button--large button--green">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                <span>No</span>
+                            </button>
+                        </div>
+                    </article>
                 </article>
             </div>
         </div>

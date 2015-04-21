@@ -3,6 +3,10 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+@import "typography";
+@import "product";
+@import "buttons";
+
 html, body, .container {
   height: 100%;
   width: 100%;
@@ -10,62 +14,8 @@ html, body, .container {
   padding: 0;
 }
 
-.suggested-products {
-  height: 100%;
-}
-
 header {
   height: 75px;
   top: 0;
   position: absolute;
-}
-
-.product-container {
-  top: 75px;
-  bottom: 0;
-  position: absolute;
-  width: 100%;
-}
-
-.product {
-  height: 100%;
-  padding: 1em;
-  font-size: 0;
-}
-
-.product:nth-last-of-type(even){
-  background-color: green;
-}
-
-.product:nth-last-of-type(odd) {
-  background-color: red;
-}
-
-.product-column {
-  height: 100%;
-  width: 50%;
-  display: inline-block;
-  font-size: 16px;
-  vertical-align: top;
-}
-
-.product__image {
-  height: 300px;
-  width: 300px;
-  margin: 0 auto;
-  display: block;
-}
-
-.product__star-rating {
-  display: block;
-}
-
-.product__show {
-  opacity: 1;
-  transition: 1.5s ease;
-}
-
-.product__hide {
-  opacity: 0;
-  transition: 1.5s ease;
 }

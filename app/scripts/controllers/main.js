@@ -11,7 +11,8 @@ function mainCtrl($scope, $sails, $interval) {
     }
 
     (function init() {
-        $interval(showNextSlide, 4000);
+        var timeoutMs = 10000;
+        $interval(showNextSlide, timeoutMs);
     })();
 
     $scope.products = [];

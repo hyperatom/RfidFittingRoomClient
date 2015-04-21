@@ -1,0 +1,87 @@
+.suggested-products {
+  height: 100%;
+}
+
+.product-container {
+  top: 75px;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.product {
+  height: 100%;
+  padding: 1em;
+  font-size: 0;
+}
+
+.product__name {
+  font-family: 'HelveticaNeueLight', Helvetica, Arial sans-serif;
+}
+
+.product__price {
+  font-family: 'HelveticaNeueLight', Helvetica, Arial sans-serif;
+  font-size: 2em;
+}
+
+.product__column {
+  height: 100%;
+  width: 50%;
+  display: inline-block;
+  font-size: 16px;
+  vertical-align: top;
+}
+
+.product__image {
+  height: 300px;
+  width: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.product__star-rating {
+  display: block;
+  margin: 0.5em 0;
+}
+
+.product-consideration {
+  display: inline-block;
+}
+
+.product-consideration__thanks {
+  margin: 1em 0;
+}
+
+.product-consideration__button-panel {
+  margin: 1em 0;
+}
+
+.product-consideration__button-panel .button {
+  &:first-child {
+    margin-right: 0.5em;
+  }
+}
+
+.product-consideration__question {
+  font-family: 'HelveticaRoman', Helvetica, Arial sans-serif;
+  font-size: 1.2em;
+}
+
+.product__store-availability {
+  font-family: 'HelveticaBold', Helvetica, Arial sans-serif;
+  color: #718133;
+  display: block;
+  margin: 1em 0;
+}
+
+.product__show {
+  z-index: 2;
+  opacity: 1;
+  transition: 1.5s ease;
+}
+
+.product__hide {
+  z-index: 1;
+  opacity: 0;
+  transition: 1.5s ease;
+}
