@@ -11,6 +11,8 @@ function mainCtrl($scope, $sails, $interval, $timeout) {
     function setProducts(res) {
 
         if (!isActiveProduct(res.data)) {
+            cancelProductRotation();
+
             return $sails.get('/rfid')
                 .then(setProducts);
         }
