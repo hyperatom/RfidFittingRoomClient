@@ -1,4 +1,4 @@
-<article class="splash-screen" ng-hide="products">
+<article class="splash-screen" ng-hide="products.length">
     <img class="splash-screen__brand-logo" src="assets/images/brand/logo.svg">
 </article>
 
@@ -8,7 +8,7 @@
         <img class="brand-header__brand-logo" src="assets/images/brand/logo.svg">
     </header>
 
-    <section>
+    <section class="product-container">
         <div ng-repeat="product in products">
             <div class="product" ng-class="!isCurrentIndex($index) ? 'product__hide' : 'product__show'">
                 <div class="product__column product__column--image">
