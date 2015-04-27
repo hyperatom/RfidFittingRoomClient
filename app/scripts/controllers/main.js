@@ -11,35 +11,33 @@ function mainCtrl($scope, $sails, $interval, $timeout) {
     function setProducts(res) {
 
         if (!isActiveProduct(res.data)) {
-            cancelProductRotation();
+            stopProductRotation();
 
             return $sails.get('/rfid')
                 .then(setProducts);
         }
 
         $scope.products = res.data.relatedProducts;
+        restartProductRotation();
     }
 
     function showNextSlide() {
         $scope.currentIndex = ($scope.currentIndex + 1) % $scope.products.length;
     }
 
-    function initProductRotation() {
+    function startProductRotation() {
         var timeoutMs = 8000;
         rotationTimer = $interval(showNextSlide, timeoutMs);
     }
 
-    function cancelProductRotation() {
+    function stopProductRotation() {
         $interval.cancel(rotationTimer);
     }
 
     function restartProductRotation() {
-        cancelProductRotation();
-
-        $timeout(function() {
-            showNextSlide();
-            initProductRotation();
-        }, 1000);
+        stopProductRotation();
+        $scope.currentIndex = 0;
+        startProductRotation();
     }
 
     function getProducts() {
@@ -54,7 +52,13 @@ function mainCtrl($scope, $sails, $interval, $timeout) {
 
     $scope.considerProduct = function(product) {
         product.hasConsidered = true;
-        restartProductRotation();
+
+        stopProductRotation();
+
+        $timeout(function() {
+            showNextSlide();
+            startProductRotation();
+        }, 1000);
     };
 
     $scope.setCurrentIndex = function(index) {
@@ -67,7 +71,7 @@ function mainCtrl($scope, $sails, $interval, $timeout) {
 
     (function init() {
         getProducts();
-        initProductRotation();
+        startProductRotation();
     })();
 }
 

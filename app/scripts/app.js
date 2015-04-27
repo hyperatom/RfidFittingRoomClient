@@ -10,7 +10,6 @@
  */
 angular
     .module('rfidFittingRoomClientApp', [
-        'ngAnimate',
         'ngCookies',
         'ngResource',
         'ngRoute',
