@@ -19,9 +19,15 @@
 
                 <star-rating class="product__star-rating" rating="product.rating"></star-rating>
 
-                <strong ng-show="product.inStore" class="product__store-availability">
-                    Available In Store
-                </strong>
+                <div class="product__availability">
+                    <strong ng-show="product.inStore" class="product__store-availability">
+                        Available In Store
+                    </strong>
+
+                    <strong ng-show="product.storeLocation" class="product__store-location"
+                            ng-bind="product.storeLocation">
+                    </strong>
+                </div>
 
                 <article class="product-consideration">
                     <article ng-show="product.hasConsidered">
