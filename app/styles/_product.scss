@@ -1,25 +1,29 @@
 .content-container {
-  display: flex;
-  flex-flow: column;
   height: 100%;
 }
 
 .product-container {
-  display: flex;
-  flex-flow: column;
-  flex: 1 1 auto;
+  height: 100%;
 }
 
 .product {
   font-size: 1.1em;
-  display: flex;
-  flex-flow: row;
   padding: 1em;
   position: absolute;
   top: 25%;
   width: 100%;
   transition: opacity 2s ease-in-out;
   background-color: #FFFFFF;
+}
+
+.product__column--image {
+  width: 44%;
+  display: inline-block;
+}
+
+.product__column--info {
+  width: 55%;
+  display: inline-block;
 }
 
 .product__name {
@@ -30,14 +34,6 @@
 .product__price {
   font-family: 'HelveticaNeueLight', Helvetica, Arial sans-serif;
   font-size: 2em;
-}
-
-.product__column--image {
-  flex: 1.5;
-}
-
-.product__column--info {
-  flex: 2;
 }
 
 .product__image {
