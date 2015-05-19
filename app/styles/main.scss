@@ -14,3 +14,23 @@ html, body, .container {
   margin: 0;
   padding: 0;
 }
+
+@media screen and(max-width: 1024px) {
+
+  body {
+    font-size: 0.8em;
+  }
+
+  .product__image {
+    height: 250px;
+    width: 250px;
+  }
+
+  .product__column--image {
+    width: 44%;
+  }
+
+  .product__column--info {
+    width: 55%;
+  }
+}
